@@ -1,51 +1,48 @@
-### Как запустить проект:
+## Kittygram: Краткое описание проекта
 
-Клонировать репозиторий и перейти в него в командной строке:
+## Функциональность:
 
-```
-git clone https://github.com/yandex-praktikum/kittygram_backend.git
-```
+- Регистрация/Авторизация
+- Добавление, редактирование, удаление информации о котах (имя, год рождения, фото, достижения)
+- Панель администратора
 
-```
-cd kittygram_backend
-```
+## Технологии:
 
-Cоздать и активировать виртуальное окружение:
+- Backend: Python Django (Django, DRF, Djoser, Gunicorn, Psycopg2, Pillow)
+- Frontend: JavaScript React
 
-```
-python3 -m venv env
-```
+ ## Развертывание:
+docker compose up --build -d
+docker container exec kittygram_final-backend-1 python manage.py migrate
 
-* Если у вас Linux/macOS
 
-    ```
-    source env/bin/activate
-    ```
+Необходимо настроить .env файл
+```dotenv
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+POSTGRES_DB=
 
-* Если у вас windows
+DB_HOST=db
+DB_PORT=5432
 
-    ```
-    source env/scripts/activate
-    ```
-
-```
-python3 -m pip install --upgrade pip
+SECRET_KEY=
+ALLOWED_HOSTS=
 ```
 
-Установить зависимости из файла requirements.txt:
+# Как протестировать
 
-```
-pip install -r requirements.txt
-```
+## Задача:
 
-Выполнить миграции:
+Настроить запуск Kittygram в контейнерах и CI/CD с использованием GitHub Actions.
 
-```
-python3 manage.py migrate
-```
+## Проверка:
 
-Запустить проект:
+1.  Создать tests.yml в корне проекта с данными о домене и Docker Hub.
+2.  Скопировать .github/workflows/main.yml в kittygram_workflow.yml в корне проекта.
+3.  Локальный запуск тестов: python -m venv venv && source venv/bin/activate (Linux/macOS) или python -m venv venv && venv\Scripts\activate (Windows), pip install -r backend/requirements.txt, pytest в корне проекта.
 
-```
-python3 manage.py runserver
-```
+## Чек-лист перед отправкой:
+
+- Проект Kittygram доступен по доменному имени, указанному в tests.yml.
+- Пуш в main запускает тестирование и деплой Kittygram с уведомлением в Telegram.
+- В корне проекта есть файл kittygram_workflow.yml.
